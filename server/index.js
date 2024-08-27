@@ -5,7 +5,9 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 dotenv.config();
 
-mongoose.connect("mongodb://localhost:27017/azure-translator").then(console.log("successfully connected to mongodb"))
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => console.log("Successfully connected to MongoDB"))
+    .catch(err => console.error("Failed to connect to MongoDB:", err));
 
 const app = express();
 app.use(cors());
